@@ -1,0 +1,11 @@
+digraph "ECU Network" {
+	node [label="\N"];
+	MultiFunction_Switch -> ICU	[key=LightState3,
+		label=LightState3];
+	MultiFunction_Switch -> ICU	[key=LightState4,
+		label=LightState4];
+	MultiFunction_Switch -> ICU	[key=CRC,
+		label=CRC];
+	MultiFunction_Switch -> ICU	[key=Counter,
+		label=Counter];
+}

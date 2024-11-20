@@ -1,0 +1,29 @@
+DBC_file =
+    version
+    new_symbols
+    bit_timing (*obsolete but required*)
+    nodes
+    value_tables
+    messages
+    message_transmitters
+    environment_variables
+    environment_variables_data
+    signal_types
+    comments
+    attribute_definitions
+    sigtype_attr_list
+    attribute_defaults
+    attribute_values
+    value_descriptions
+    category_definitions (*obsolete*)
+    categories (*obsolete*)
+    filter (*obsolete*)
+    signal_type_refs
+    signal_groups
+    signal_extended_value_type_list ;
+
+
+
+
+
+    

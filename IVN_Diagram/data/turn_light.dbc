@@ -1,0 +1,84 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: ICU MultiFunction_Switch
+VAL_TABLE_ Counter 13 "Counter '0xD'" 12 "Counter '0xC'" 11 "Counter '0xB'" 10 "Counter '0xA'" 9 "Counter '0x9'" 8 "Counter '0x8'" 7 "Counter '0x7'" 6 "Counter '0x6'" 5 "Counter '0x5'" 4 "Counter '0x4'" 3 "Counter '0x3'" 2 "Counter '0x2'" 1 "Counter '0x1'" 0 "Counter '0x0'" ;
+VAL_TABLE_ LightState3 64 "40 10 : Left" 0 "00 00 : Normal, 00 41 : Right" ;
+VAL_TABLE_ LightState4 16 "40 10 : Left" 65 "00 41 : Right" 0 "00  00 : Normal" ;
+
+
+BO_ 961 TurnSignal: 8 MultiFunction_Switch
+ SG_ LightState3 : 24|8@1+ (1,0) [0|255] ""  ICU
+ SG_ LightState4 : 32|8@1+ (1,0) [0|255] ""  ICU
+ SG_ CRC : 0|8@1+ (1,0) [0|255] ""  ICU
+ SG_ Counter : 8|4@1+ (1,0) [0|14] ""  ICU
+
+
+BA_DEF_  "MultiplexExtEnabled" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ BO_  "GenMsgSendType " ENUM  "Cyclic","not_used","not_used","not_used","not_used","Cyclic","not_used","IfActive","NoMsgSendType";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 0;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 2 50000;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 1 1000;
+BA_DEF_ BO_  "GenMsgNrOfRepetitions" INT 1 999999;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "cyclic","spontaneous","cyclicIfActive","spontaneousWithDelay","cyclicAndSpontaneous","cyclicAndSpontaneousWithDelay","spontaneousWithRepetition","cyclicIfActiveAndSpontaneousWD";
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 100000;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 100000000000;
+BA_DEF_DEF_  "MultiplexExtEnabled" "No";
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenMsgSendType " "NoMsgSendType";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "GenMsgCycleTime" 100;
+BA_DEF_DEF_  "GenMsgDelayTime" 1;
+BA_DEF_DEF_  "GenMsgNrOfRepetitions" 1;
+BA_DEF_DEF_  "GenMsgSendType" "spontaneous";
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_ "BusType" "CAN";
+BA_ "MultiplexExtEnabled" 0;
+BA_ "DBName" "B_CAN";
+BA_ "GenMsgCycleTime" BO_ 961 200;
+BA_ "GenMsgDelayTime" BO_ 961 1;
+BA_ "GenMsgSendType" BO_ 961 0;
+BA_ "GenSigInactiveValue" SG_ 961 CRC 0;
+BA_ "GenSigStartValue" SG_ 961 Counter 0;
+VAL_ 961 LightState3 64 "40 10 : Left" 0 "00 00 : Normal, 00 41 : Right" ;
+VAL_ 961 LightState4 16 "40 10 : Left" 65 "00 41 : Right" 0 "00  00 : Normal" ;
+VAL_ 961 Counter 13 "Counter '0xD'" 12 "Counter '0xC'" 11 "Counter '0xB'" 10 "Counter '0xA'" 9 "Counter '0x9'" 8 "Counter '0x8'" 7 "Counter '0x7'" 6 "Counter '0x6'" 5 "Counter '0x5'" 4 "Counter '0x4'" 3 "Counter '0x3'" 2 "Counter '0x2'" 1 "Counter '0x1'" 0 "Counter '0x0'" ;
+

@@ -1,0 +1,7 @@
+0,ICU
+0,MultiFunction_Switch
+1,0x3C1,TurnSignal,8,MultiFunction_Switch
+2,CRC,0,8,1,+,1.00,0.00,0,255,없음,ICU
+2,Counter,8,4,1,+,1.00,0.00,0,14,없음,ICU
+2,LightState3,24,8,1,+,1.00,0.00,0,255,없음,ICU
+2,LightState4,32,8,1,+,1.00,0.00,0,255,없음,ICU
