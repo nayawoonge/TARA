@@ -1,7 +1,7 @@
 #include "util.h"
 #include "parse_dbc_file.h"
 #include "struct_print.h"
-#include "input_asset.h"
+#include "stride.h"
 #include "ecu_diagram.h"
 
 int main() {   
@@ -24,6 +24,7 @@ int main() {
 
     // DBC 파일 파싱
     printf("[DBC 파일 파싱]\n");
+    // ecu의 개수를 반환
     ecu_count = parse_dbc_file(dbc_file_path, CAN_m, ecu);
 
     // DBC 다이어그램 출력
@@ -58,13 +59,15 @@ int main() {
         }
     }
 
-    // 구조체 데이터 파일 쓰기
+    // 1 자산 식별
     const char *default_identify_file_name = "asset_identify.csv";  // 자산 식별 csv파일명
     output_file(csv_file_dir, default_identify_file_name, CAN_m, ecu, ecu_count);
 
-    // 자산식별 후 자산의 중요도 입력하기
+    // 버스 모니터링
+
+    // 2 위협 시나리오 식별
     const char *default_importance_file_name = "asset_importance.csv";   // 자산 중요도 csv파일명
-    input_asset(csv_file_dir, default_importance_file_name, CAN_m, ecu, ecu_count);
+    stride_asset(csv_file_dir, default_importance_file_name, CAN_m, ecu, ecu_count);
 
     printf("[process finish]\n");
     return 0;

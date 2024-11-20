@@ -3,9 +3,9 @@ INCLUDES = -Ilib
 CFLAGS = -Wall -Wextra -g $(INCLUDES)
 LDFLAGS = -lcgraph -lgvc
 TARGET = ReadDbc
-SRCS = src/main.c lib/parse_dbc_file.c lib/struct_print.c lib/input_asset.c lib/ecu_diagram.c
+SRCS = src/main.c lib/parse_dbc_file.c lib/struct_print.c lib/stride.c lib/ecu_diagram.c
 OBJS = $(SRCS:.c=.o)
-DEPS = lib/util.h lib/parse_dbc_file.h lib/struct_print.h lib/input_asset.h lib/ecu_diagram.h
+DEPS = lib/util.h lib/parse_dbc_file.h lib/struct_print.h lib/stride.h lib/ecu_diagram.h
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LDFLAGS)
