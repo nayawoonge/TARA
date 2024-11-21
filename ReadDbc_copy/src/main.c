@@ -73,7 +73,7 @@ int main() {
 
     // 3 영향 평가
     const char *default_rating_file_name = "asset_rating.csv";  // 영향 평가 csv파일명
-    rating_asset(csv_file_dir, default_rating_file_name, default_stride_file_name , CAN_m, ecu, ecu_count);
+    rating_asset(csv_file_dir, default_rating_file_name, default_stride_file_name);
 
     // 4 공격 경로 분석
     // tree code
