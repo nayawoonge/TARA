@@ -3,6 +3,7 @@
 #include "struct_print.h"
 #include "stride.h"
 #include "ecu_diagram.h"
+#include "impact_rating.h"
 
 int main() {   
     printf("[process start]\n");
@@ -61,13 +62,30 @@ int main() {
 
     // 1 자산 식별
     const char *default_identify_file_name = "asset_identify.csv";  // 자산 식별 csv파일명
-    output_file(csv_file_dir, default_identify_file_name, CAN_m, ecu, ecu_count);
+    identify_asset(csv_file_dir, default_identify_file_name, CAN_m, ecu, ecu_count);
 
     // 버스 모니터링
+    // code
 
     // 2 위협 시나리오 식별
-    const char *default_importance_file_name = "asset_importance.csv";   // 자산 중요도 csv파일명
-    stride_asset(csv_file_dir, default_importance_file_name, CAN_m, ecu, ecu_count);
+    const char *default_stride_file_name = "asset_stride.csv";   // 위협 시나리오 식별 csv파일명
+    stride_asset(csv_file_dir, default_stride_file_name, CAN_m, ecu, ecu_count);
+
+    // 3 영향 평가
+    const char *default_rating_file_name = "asset_rating.csv";  // 영향 평가 csv파일명
+    rating_asset(csv_file_dir, default_rating_file_name, default_stride_file_name , CAN_m, ecu, ecu_count);
+
+    // 4 공격 경로 분석
+    // tree code
+
+    // 5 공격 실현 가능성 평가
+    // code
+
+    // 6 위험도 평가
+    // 영향 평가+공격 실현 가능성 평가의 합
+
+    // 7 위험 처리 결정
+    // 4가지 위험 처리 옵션 중 선택
 
     printf("[process finish]\n");
     return 0;

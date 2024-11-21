@@ -1,9 +1,8 @@
 #include "util.h"
 #include "struct_print.h"
 
-void struct_print(struct CAN_Message *CAN_m)
+void struct_print(struct CAN_Message *CAN_m)    // 구조체 안에 값들 확인용
 {
-    // 구조체 안에 값들 확인용
     for (int i=0x000 ; i<0x800 ; i++)
     {
         if((CAN_m[i].id != 0) && CAN_m[i].id < 0x800)
@@ -24,7 +23,7 @@ void struct_print(struct CAN_Message *CAN_m)
     }
 }
 
-void output_file(const char *csv_file_dir, const char *file_name, struct CAN_Message *CAN_m, struct ECU *ecu, int ecu_count)
+void identify_asset(const char *csv_file_dir, const char *file_name, struct CAN_Message *CAN_m, struct ECU *ecu, int ecu_count)
 {
     char filename[64] = {0,};
     sprintf(filename, "%s%s", csv_file_dir, file_name);

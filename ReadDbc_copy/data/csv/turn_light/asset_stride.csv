@@ -1,0 +1,7 @@
+0,ICU,Spoofing
+0,MultiFunction_Switch,Tampering
+1,0x3C1,TurnSignal,8,MultiFunction_Switch,Denial of Service
+2,LightState3,24,8,1,+,1.000000,0.000000,0.000000,255.000000,None,ICU,Denial of Service
+2,LightState4,32,8,1,+,1.000000,0.000000,0.000000,255.000000,None,ICU,Denial of Service
+2,CRC,0,8,1,+,1.000000,0.000000,0.000000,255.000000,None,ICU,Denial of Service
+2,Counter,8,4,1,+,1.000000,0.000000,0.000000,14.000000,None,ICU,Denial of Service

@@ -2,45 +2,22 @@
 
 void stride_asset(const char *csv_file_dir, const char *default_output_file_path, struct CAN_Message *CAN_m, struct ECU *ecu, int ecu_count)
 {
-    char file_name[20];  // 입력 파일 경로를 저장할 버퍼
-    char file_path[80];  // 입력 파일 경로를 저장할 버퍼
+    char file_path[80];  // 파일 경로를 저장할 버퍼
     FILE *outputF;
 
-    // 입력 파일 열기
-    while (1) 
+    sprintf(file_path, "%s%s", csv_file_dir, default_output_file_path);   // 위협 시나리오 식별 csv파일명
+
+    // 파일 열기
+    outputF = fopen(file_path, "w");
+    printf("%s\n", file_path);
+    if (outputF == NULL) 
     {
-        printf("출력 파일 경로 입력(default location [asset_importance.csv]): ");
-        if (fgets(file_name, sizeof(file_name), stdin) == NULL) 
-        {
-            printf("입력이 잘못되었습니다. 다시 시도해주세요.\n");
-            continue;
-        }
-
-        // 개행 문자 제거
-        file_name[strcspn(file_name, "\n")] = '\0';
-
-        // 빈 입력일 경우 기본 경로로 설정
-        if (strlen(file_name) == 0) 
-        {
-            sprintf(file_path, "%s%s", csv_file_dir, default_output_file_path);   // 자산 중요도 csv파일명
-        } else 
-        {
-            sprintf(file_path, "%s%s", csv_file_dir, file_name);   // 자산 중요도 csv파일명
-        }
-
-        // 파일 열기
-        outputF = fopen(file_path, "w");
-        printf("%s\n", file_path);
-        if (outputF == NULL) {
-            perror("파일 열기 오류");
-            printf("파일 경로가 잘못되었습니다. 다시 입력해주세요.\n");
-            continue;
-        }
-
-        printf("파일이 성공적으로 열렸습니다: %s\n", file_path);
-        break;  // 파일이 성공적으로 열리면 루프 종료
+        perror("파일 열기 오류");
+        exit(1);
     }
-
+    else
+        printf("파일이 성공적으로 열렸습니다: %s\n", file_path);
+    
     char threat_type ='\0';
 
     // ECU STRIDE 입력
@@ -49,7 +26,7 @@ void stride_asset(const char *csv_file_dir, const char *default_output_file_path
     for (int i = 0; i < ecu_count ; i++) 
     {
         // printf("ecu count %d", ecu_count);
-        printf("i = %d\n",i);
+        // printf("i = %d\n",i);
         printf("\nECU: %s\n", ecu[i].name);
         threat_type ='\0';
         do {
@@ -189,4 +166,6 @@ void stride_asset(const char *csv_file_dir, const char *default_output_file_path
     // 파일 닫기
     fclose(outputF);
     printf("\n새로운 파일이 저장되었습니다: %s\n", file_path);
+
+    return ;
 }
