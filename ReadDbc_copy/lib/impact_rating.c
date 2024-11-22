@@ -18,7 +18,7 @@ void rating_asset(const char *csv_file_dir, const char *default_output_file_path
     // printf("%s\n", output_file_path);
     if (intputF == NULL || outputF == NULL) 
     {
-        perror("파일 열기 오류");
+        perror("fopen error");
         exit(1);
     }
     else

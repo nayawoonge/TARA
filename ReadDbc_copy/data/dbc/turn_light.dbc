@@ -80,5 +80,5 @@ BA_ "GenSigInactiveValue" SG_ 961 CRC 0;
 BA_ "GenSigStartValue" SG_ 961 Counter 0;
 VAL_ 961 LightState3 64 "40 10 : Left" 0 "00 00 : Normal, 00 41 : Right" ;
 VAL_ 961 LightState4 16 "40 10 : Left" 65 "00 41 : Right" 0 "00  00 : Normal" ;
-VAL_ 961 Counter 13 "Counter '0xD'" 12 "Counter '0xC'" 11 "Counter '0xB'" 10 "Counter '0xA'" 9 "Counter '0x9'" 8 "Counter '0x8'" 7 "Counter '0x7'" 6 "Counter '0x6'" 5 "Counter '0x5'" 4 "Counter '0x4'" 3 "Counter '0x3'" 2 "Counter '0x2'" 1 "Counter '0x1'" 0 "Counter '0x0'" ;
+VAL_ 961 Counter 14 "Couter '0xE'" 13 "Counter '0xD'" 12 "Counter '0xC'" 11 "Counter '0xB'" 10 "Counter '0xA'" 9 "Counter '0x9'" 8 "Counter '0x8'" 7 "Counter '0x7'" 6 "Counter '0x6'" 5 "Counter '0x5'" 4 "Counter '0x4'" 3 "Counter '0x3'" 2 "Counter '0x2'" 1 "Counter '0x1'" 0 "Counter '0x0'" ;
 

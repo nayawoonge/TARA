@@ -4,6 +4,7 @@
 #include "stride.h"
 #include "ecu_diagram.h"
 #include "impact_rating.h"
+#include "risk_det.h"
 
 int main() {   
     printf("[process start]\n");
@@ -79,10 +80,12 @@ int main() {
     // tree code
 
     // 5 공격 실현 가능성 평가
-    // code
+    const char *default_feasibility_file_name = "attack_feasibility.csv";  // 공격 실현 가능성 평가 csv파일명
+    attack_vector(csv_file_dir, default_feasibility_file_name, default_rating_file_name);
 
     // 6 위험도 평가
-    // 영향 평가+공격 실현 가능성 평가의 합
+    const char *default_risk_file_name = "risk_determination.csv";  // 위험도 평가 csv파일명
+    risk_determination(csv_file_dir, default_risk_file_name, default_feasibility_file_name);
 
     // 7 위험 처리 결정
     // 4가지 위험 처리 옵션 중 선택

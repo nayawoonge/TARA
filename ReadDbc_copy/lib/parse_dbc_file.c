@@ -1,8 +1,10 @@
 #include "parse_dbc_file.h"
 
-int parse_dbc_file(const char *file_path, struct CAN_Message *CAN_m, struct ECU *ecu) {
+int parse_dbc_file(const char *file_path, struct CAN_Message *CAN_m, struct ECU *ecu) 
+{
     FILE *dbc_file = fopen(file_path, "r");
-    if (dbc_file == NULL) {
+    if (dbc_file == NULL) 
+    {
         printf("파일을 열 수 없습니다.\n");
         return 0;
     }
@@ -14,9 +16,11 @@ int parse_dbc_file(const char *file_path, struct CAN_Message *CAN_m, struct ECU 
     int msg_dlc;
     char msg_sender[32];
 
-    while (fgets(line, sizeof(line), dbc_file)) {
+    while (fgets(line, sizeof(line), dbc_file)) 
+    {
         // BU_ 섹션 파싱
-        if (strncmp(line, "BU_", 3) == 0) {
+        if (strncmp(line, "BU_", 3) == 0) 
+        {
             char *token = strtok(line + 4, " \n");
             while (token != NULL) {
                 strncpy(ecu[ecu_count].name, token, sizeof(ecu[ecu_count].name) - 1);
@@ -26,7 +30,8 @@ int parse_dbc_file(const char *file_path, struct CAN_Message *CAN_m, struct ECU 
             }
         }
         // 메시지 파싱
-        else if (strncmp(line, "BO_", 3) == 0) {
+        else if (strncmp(line, "BO_", 3) == 0) 
+        {
             sscanf(line, "BO_ %d %15[^:]: %d %24s", &msg_id, msg_name, &msg_dlc, msg_sender);
             CAN_m[msg_id].id = msg_id;
             strncpy(CAN_m[msg_id].name, msg_name, sizeof(CAN_m[msg_id].name) - 1);
@@ -34,7 +39,8 @@ int parse_dbc_file(const char *file_path, struct CAN_Message *CAN_m, struct ECU 
             strncpy(CAN_m[msg_id].sender, msg_sender, sizeof(CAN_m[msg_id].sender) - 1);
         }
         // 신호 파싱
-        else if (strncmp(line, " SG_", 4) == 0) {
+        else if (strncmp(line, " SG_", 4) == 0) 
+        {
             sscanf(line, " SG_ %31s : %d|%d@%d%c (%lf,%lf) [%lf|%lf] \"%31s  %209s\n",
                  CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].name,
                 &CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].start_bit,
@@ -50,12 +56,14 @@ int parse_dbc_file(const char *file_path, struct CAN_Message *CAN_m, struct ECU 
             
             CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].unit[strlen(CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].unit) - 1] = '\0';
 
-            if (CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].unit[0] == '\0') {
+            if (CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].unit[0] == '\0') 
+            {
                 strncpy(CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].unit, "None", 32 - 1);
                 // printf("DEBUG u0: %s\n", CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].receiver);
             }
             // 수신 ECU가 빈 문자열일 경우 처리
-            if (CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].receiver[0] == '\0') {
+            if (CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].receiver[0] == '\0') 
+            {
                 strncpy(CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].receiver, "None", 210 - 1);
                 // printf("DEBUG r0: %s\n", CAN_m[msg_id].CAN_s[CAN_m[msg_id].sig_counter].receiver);
             }
